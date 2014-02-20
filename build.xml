@@ -1,0 +1,96 @@
+<project name="soms" default="usage" basedir=".">
+
+    <description>Build Script to build the soms Project</description>
+
+    <property file="build.properties"/>
+
+    <path id="build.classpath">
+        <fileset dir="${webroot.webinf}/lib" includes="*.jar"/>
+		<fileset dir="${tomcat.home}/common/lib" includes="servlet-api.jar"/>		
+    </path>
+    
+    <target name="usage">
+    <echo>
+    Usage: build [clean|compile|jar|war|deploy|incremental]
+    
+    compile     -- compile all project files
+    clean   -- deletes the compiled classes and jar files
+    jar     -- build drp appservice and web related jar files
+    war     -- build drp admin and runtime war files
+    incremental -- build jar files and deploy them in related directories
+    </echo>
+    </target>
+
+    <target name="clean"
+        description="deletes bytecode for clean build">
+        <delete dir="${dist}" />
+    </target>
+
+    <target name = "compile"
+     description = "compiles project files to dist/classes">
+        <mkdir dir="${javac.dest}" />
+        <javac srcdir="${java.source.dir}"
+              destdir="${javac.dest}"
+             includes="**/*.java"
+         classpathref="build.classpath" 
+                debug="${debug}"/>
+    </target>
+
+    <target name="jar" depends="compile"
+     description="jars the project files">
+    	<mkdir dir="${jar.dest}" />
+        <delete file = "${jar.dest}/${app.name}.jar"/>
+        <jar jarfile = "${jar.dest}/${app.name}.jar"
+             basedir = "${javac.dest}" 
+            includes = "**/*.class"/>
+    </target>
+
+
+    <target name="war"
+         depends="jar"
+     description="builds the application war file">    	
+        <war 
+            destfile="${jar.dest}/${app.name}.war" 
+              webxml="${webroot.webinf}/web.xml">
+
+            <fileset dir="${webroot.home}">
+                <include name="**" />
+                <exclude name="WEB-INF/**" />
+            </fileset>
+
+        	<classes dir="${webroot.webinf}" 
+        			includes="hibernate.cfg.xml, mappings/*.xml,*.properties "/>
+        	
+            <lib dir="${jar.dest}" includes="**/*.jar"/>        	
+            <lib dir="${webroot.webinf}/lib" includes="*.jar"/>
+            <webinf dir="${webroot.webinf}" 
+            		includes="*.xml, *.properties" 
+            		excludes="web.xml, hibernate.cfg.xml"/>
+        </war>
+    	
+    </target>
+
+    <!-- Target to clean the Tomcat -->
+    <target name="tomcat-clean"
+     description="deletes the expanded directory structure in tomcat
+                     webapps and work\Standalone\localhost folders">
+        <delete dir="${tomcat.webapps}/${app.name}"/>
+        <delete dir="${tomcat.work}/${app.name}"/>
+    </target>
+
+
+    <!-- Deploys the Application to Tomcat -->
+    <target name="deploy" depends="war, tomcat-clean">
+        <copy file="${jar.dest}/${app.name}.war"
+            tofile="${tomcat.webapps}/${app.name}.war" />
+    </target>
+
+    <target name="javadoc">
+        <mkdir dir="docs/api"/>
+        <javadoc sourcepath="${java.source.dir}"
+                packagenames="com.javachap.*"
+                destdir="docs/api">
+        </javadoc>
+    </target>
+
+</project>

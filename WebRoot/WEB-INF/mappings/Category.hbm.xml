@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javachap.domain.Category" table="CATEGORY" discriminator-value="0">
+        <id column="CT_ID" name="id" type="java.lang.Long">
+            <generator class="native"/>
+        </id>
+        <discriminator type="integer" formula="case when CT_ID &gt; 0 then 1 else 0 end"/>
+        <property column="CT_NAME" name="name" type="java.lang.String"/>
+        <property column="CT_DESCRIPTION" name="description" type="java.lang.String"/>
+        <property column="CT_CREATED_DATE" name="createdDate" type="java.util.Date"/>
+        <property column="CT_MODIFIED_DATE" name="modifiedDate" type="java.util.Date"/>
+
+        <subclass name="com.javachap.domain.impl.CategoryImpl" discriminator-value="1"/>
+
+    </class>
+</hibernate-mapping>

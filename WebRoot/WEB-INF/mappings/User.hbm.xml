@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.javachap.domain.User" table="USER" discriminator-value="0">
+        <id column="USR_ID" name="id" type="java.lang.Long">
+            <generator class="native"/>
+        </id>
+        <discriminator type="integer" formula="case when USR_ID &gt; 0 then 1 else 0 end"/>
+        <property column="USR_FIRST_NAME" name="firstName" type="java.lang.String"/>
+        <property column="USR_LAST_NAME" name="lastName" type="java.lang.String"/>
+        <property column="USR_EMAIL" name="email" type="java.lang.String"/>
+        <property column="USR_PASSWORD" name="password" type="java.lang.String"/>
+        <property column="USR_CREATED_DATE" name="createdDate" type="java.util.Date"/>
+        <property column="USR_MODIFIED_DATE" name="modifiedDate" type="java.util.Date"/>
+
+        <subclass name="com.javachap.domain.impl.UserImpl" discriminator-value="1"/>
+
+    </class>
+</hibernate-mapping>

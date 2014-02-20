@@ -1,0 +1,149 @@
+/* - - - Custom Theme - - - */
+
+/* Logo */
+h1 a {
+	background-image:url('/images/wflogo.png'); 
+	min-height:0;
+	height:40px;
+}
+* html h1 a {/* IE6 png Support */
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/wflogo.png", sizingMethod="crop");
+}
+
+/* Backgrounds */
+body{
+	background-image:none;
+	background-color:#91b166;
+}
+h1{
+	background-image:none;
+	background-color:#dd5200;
+}
+#container, body.embed{
+	
+}
+.javachap input.text, .javachap textarea.textarea{
+	background:#FFFFFF url(images/fieldbg.gif) repeat-x top;
+}
+.javachap .focused{
+	background-color:#ffc62d;
+}
+.javachap .instruct{
+	background-color:#e49400;
+}
+
+/* Borders */
+#container{
+	border:0 solid #cccccc;
+}
+.javachap .info{
+	border-bottom:1px dotted #91b166;
+}
+.javachap .section{
+	border-top:1px dotted #91b166;
+}
+.javachap input.text, .javachap textarea.textarea{
+	border:;
+}
+.javachap .instruct{
+	border:0 solid #e6e6e6;
+}
+
+/* Typography */
+.javachap .info h2{
+	font-size:160%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#000000;
+}
+.javachap .info p{
+	font-size:95%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#444444;
+}
+.javachap .section h3{
+	font-size:110%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#000000;
+}	
+.javachap .section p{
+	font-size:85%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#444444;
+}	
+.javachap label.desc{
+	font-size:95%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#444444;
+}
+.javachap li div, .javachap li span, .javachap li div label, .javachap li span label{
+	font-family:inherit;
+	color:#444444;
+}
+.javachap label.choice{
+	font-size:100%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#444444;
+}
+.javachap input.text, .javachap textarea.textarea, .javachap select.select{
+	font-size:100%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#333333;
+}
+.javachap .instruct{
+	font-size:80%;
+	font-family:inherit;
+	font-weight:;
+	font-style:;
+	color:#ffffff;
+}
+.javachap li.altInstruct .instruct, .javachap li.leftHalf .instruct, .javachap li.rightHalf .instruct{
+	color:#444444;
+}
+.javachap input.btTxt{
+	font-size:;
+	font-family:verdana;
+	font-weight:;
+	font-style:;
+	color:;
+        background-color: #F5F5F5;  
+}
+
+.javachap input.imgStyle{
+        background: #F5F5F5 url(../images/new_lead.png) no-repeat scroll 10% 50%;
+        text-indent: 15%;
+}
+
+.javachap li.focused label.desc{
+	font-size:;
+	font-family:;
+	font-weight:;
+	font-style:;
+	color:;
+}
+.javachap li.focused label.desc{
+	color:;
+}
+.javachap li.focused div, .javachap li.focused span, .javachap li.focused div label, .javachap li.focused span label{
+	font-family:;
+	color:;
+}
+
+/* Drop Shadows */
+#top, #bottom{
+	visibility:visible;
+}
