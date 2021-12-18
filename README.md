@@ -1,6 +1,7 @@
 struts-crud
 ===========
 this is good Project
+thi is good Project for pawan
 Building and deploying the application
 
   Create a schema/user using the schema.sql  file in src/database
